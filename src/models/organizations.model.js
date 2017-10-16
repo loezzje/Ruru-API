@@ -10,7 +10,7 @@ module.exports = function (app) {
     logo: { type: String },
     tagline: { type: String },
     about: { type: String },
-    features: [{ String }],
+    features: [ String ],
 
     website: { type: String },
     phone: { type: Number },
