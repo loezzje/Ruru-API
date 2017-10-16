@@ -8,6 +8,7 @@ module.exports = function (app) {
   const ruru = new Schema({
     about: { type: String },
     phone: { type: Number },
+    email: { type: String },
     adress: { type: String },
     instagram: { type: String },
     facebook: { type: String },
