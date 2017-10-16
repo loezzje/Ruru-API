@@ -55,7 +55,9 @@ categories.map((categories) => {
 //   website: 'www.coa.nl',
 //   phone: '0887157000',
 //   address: 'Rijsntraat 8 2515 XP Den Haag',
+
 //   categories: [],
+
 //   frontpage: true
 // }, {
 //   name: 'IND - Immigration and Naturalization',
@@ -66,6 +68,7 @@ categories.map((categories) => {
 //   phone: '0880430430',
 //   address: 'Stadhouderskade 85 1073 AT Amsterdam',
 //   categories: [],
+
 //   frontpage: false
 // },
 // {
@@ -76,6 +79,7 @@ categories.map((categories) => {
 //   features: ['Finding work', 'Practical information about living in Amsterdam, inclusing taxes', 'Information about Universities in Amsterdam'],
 //   website: 'www.iamsterdam.com/en',
 //   categories: [],
+
 //   frontpage: false
 // },
 // {
@@ -87,10 +91,12 @@ categories.map((categories) => {
 //   phone: '0203467200',
 //   address: 'Surinameplein 122 1058 GV Amsterdam',
 //   categories: [],
+
 //   frontpage: true
 // }
 // ];
 //
+
 // const feathersClient = feathers();
 //
 // feathersClient
@@ -108,3 +114,4 @@ categories.map((categories) => {
 // });
 //
 //
+
