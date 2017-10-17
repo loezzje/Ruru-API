@@ -14,11 +14,9 @@ module.exports = function (app) {
 
     website: { type: String },
     phone: { type: Number },
-    email: { type: String },
     adress: { type: String },
     facebook: { type: String },
 
-    categories: [{ type: Schema.Types.ObjectId, ref: 'categories' }],
     frontPage: { type: Boolean },
 
     createdAt: { type: Date, default: Date.now },
