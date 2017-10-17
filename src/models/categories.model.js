@@ -9,6 +9,7 @@ module.exports = function (app) {
     name: { type: String, required: true },
     icon: { type: String, required: true },
     frontPage: { type: Boolean },
+    organizationsId: [{ type: Schema.Types.ObjectId, ref: 'organizations' }],
 
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
