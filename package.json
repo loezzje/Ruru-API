@@ -23,7 +23,6 @@
   },
   "scripts": {
     "seed": "node src/seeds.js",
-    "seed-another": "node src/seeds2.js",
     "test": "npm run eslint && npm run mocha",
     "eslint": "eslint src/. test/. --config .eslintrc.json",
     "start": "node src/",
