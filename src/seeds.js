@@ -43,6 +43,8 @@ categories.map((categories) => {
 
 // comment the section above, between the previous comment and this comment
 // uncomment the entire section below, and seed again: yarn run seed.
+// , you actually need to copy the id's from the categories information into
+// the categories array. Ask Marloes if you feel lost.
 
 // const organizations = [{
 //   name: 'COA - Centre of Asylum',
@@ -53,7 +55,9 @@ categories.map((categories) => {
 //   website: 'www.coa.nl',
 //   phone: '0887157000',
 //   address: 'Rijsntraat 8 2515 XP Den Haag',
-//   categories: ['59e4c89b1f1bf8434bba1927'],
+
+//   categories: [],
+
 //   frontpage: true
 // }, {
 //   name: 'IND - Immigration and Naturalization',
@@ -63,7 +67,8 @@ categories.map((categories) => {
 //   website: 'www.ind.nl',
 //   phone: '0880430430',
 //   address: 'Stadhouderskade 85 1073 AT Amsterdam',
-//   categories: ['59e4c89b1f1bf8434bba1928'],
+//   categories: [],
+
 //   frontpage: false
 // },
 // {
@@ -73,7 +78,8 @@ categories.map((categories) => {
 //   about: 'You can find practical information about where to look for work, accommodation or studying in Amsterdam. It is meant for tourists, but also acts as the English information site of City Counsil',
 //   features: ['Finding work', 'Practical information about living in Amsterdam, inclusing taxes', 'Information about Universities in Amsterdam'],
 //   website: 'www.iamsterdam.com/en',
-//   categories: ['59e4c89b1f1bf8434bba1927', '59e4c89b1f1bf8434bba1929', '59e4c89b1f1bf8434bba192a'],
+//   categories: [],
+
 //   frontpage: false
 // },
 // {
@@ -84,23 +90,28 @@ categories.map((categories) => {
 //   website: 'www.vluchtelingenwerk.nl',
 //   phone: '0203467200',
 //   address: 'Surinameplein 122 1058 GV Amsterdam',
-//   categories: ['59e4c89b1f1bf8434bba1929', '59e4c89b1f1bf8434bba192b'],
+//   categories: [],
+
 //   frontpage: true
 // }
 // ];
 //
-// // const feathersClient = feathers();
-// //
-// // feathersClient
-// //   .configure(hooks())
-// //   .configure(rest('http://localhost:3030').superagent(superagent));
-// //
-// //
-// // organizations.map((organizations) => {
-// //   feathersClient.service('organizations').create(organizations)
-// //     .then((result) => {
-// //       console.log('Organization seeded...', result.name);
-// //     }).catch((error) => {
-// //       console.error('Error seeding organizations!', error.message);
-// //     });
-// // });
+
+// const feathersClient = feathers();
+//
+// feathersClient
+//   .configure(hooks())
+//   .configure(rest('http://localhost:3030').superagent(superagent));
+//
+
+// organizations.map((organizations) => {
+//   feathersClient.service('organizations').create(organizations)
+//     .then((result) => {
+//       console.log('Organization seeded...', result.name);
+//     }).catch((error) => {
+//       console.error('Error seeding organizations!', error.message);
+//     });
+// });
+//
+//
+

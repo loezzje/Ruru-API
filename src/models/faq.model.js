@@ -8,7 +8,7 @@ module.exports = function (app) {
   const faq = new Schema({
     question: { type: String, required: true },
     answer: { type: String, required: true },
-    category: { type: Schema.Types.ObjectId, ref: 'categories' },
+    categories: [{ type: Schema.Types.ObjectId, ref: 'categories' }],
 
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
