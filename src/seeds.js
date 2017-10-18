@@ -53,11 +53,11 @@ const organizations = [{
 
 const categories = [
   { _id: new mongooseClient.Types.ObjectId(), name: 'Housing',
-    icon: 'https://image.flaticon.com/icons/svg/109/109737.svg',
+    icon: 'home',
     frontPage: true, organizationsId: [organizations[2]['_id']]},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Learn',
-    icon: 'https://image.flaticon.com/icons/svg/182/182327.svg',
-    frontPage: false, organizationsId: [organizations[2]['_id']]},
+    icon: 'school',
+    frontPage: true, organizationsId: [organizations[2]['_id']]},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Rights and Law',
     icon: 'https://image.flaticon.com/icons/svg/116/116347.svg',
     frontPage: false, organizationsId: [organizations[0]['_id'],organizations[1]['_id'],organizations[3]['_id']]},
