@@ -15,7 +15,7 @@ const organizations = [{
   features: ['Payment of pocket money', 'Referral of specialist services', 'Counseling and support', 'Accommodation advise'],
   website: 'www.coa.nl',
   phone: '0887157000',
-  address: 'Rijsntraat 8 2515 XP Den Haag',
+  address: 'Rijnstraat 8 2515 XP Den Haag',
   frontpage: true
 }, {
   _id: new mongooseClient.Types.ObjectId(),
@@ -76,8 +76,8 @@ const categories = [
 
 const ruru = [
   {about: 'Ruru helps refugees find their way in The Netherlands',
-    phone: '0627102756',
-    email: 'adamsc.au@gmail.com',
+    phone: '0612345678',
+    email: 'rur@ruru.ruru',
   }];
 
 const faq = [{
