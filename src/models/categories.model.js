@@ -8,7 +8,7 @@ module.exports = function (app) {
   const categories = new Schema({
     name: { type: String, required: true },
     icon: { type: String, required: true },
-    frontPage: { type: Boolean },
+    frontpage: { type: Boolean },
     tagline: { type: String },
     organizationsId: [{ type: Schema.Types.ObjectId, ref: 'organizations' }],
 
