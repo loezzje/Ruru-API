@@ -108,22 +108,22 @@ feathersClient.service('ruru').create(ruru)
   });
 
 feathersClient.service('organizations').create(organizations)
-  .then((result) => {
-    console.log('Organization seeded...', result.name);
+  .then(() => {
+    console.log('Organization seeded...' );
   }).catch((error) => {
     console.error('Error seeding organizations!', error.message);
   });
 
 feathersClient.service('categories').create(categories)
-  .then((result) => {
-    console.log('Category seeded...', result.name);
+  .then(() => {
+    console.log('Category seeded...');
   }).catch((error) => {
     console.error('Error seeding categories!', error.message);
   });
 
 feathersClient.service('faq').create(faq)
-  .then((result) => {
-    console.log('faq seeded', result.categories);
+  .then(() => {
+    console.log('faq seeded' );
   }).catch((error) =>{
     console.error('error seeding faq', error.message);
   });
