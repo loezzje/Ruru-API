@@ -16,6 +16,8 @@ const organizationsSchema = {
   }
 };
 
+const fixOrganizationArray = require('../../hooks/fix-organization-array');
+
 module.exports = {
   before: {
     all: [],
@@ -28,9 +30,7 @@ module.exports = {
   },
 
   after: {
-    all: [
-      populate({ schema: organizationsSchema }),
-    ],
+    all: [populate({ schema: organizationsSchema }), fixOrganizationArray()],
     find: [],
     get: [],
     create: [],
