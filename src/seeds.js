@@ -53,19 +53,21 @@ const organizations = [{
 
 const categories = [
   { _id: new mongooseClient.Types.ObjectId(), name: 'Housing',
-    icon: 'home',
+    icon: 'home', tagline: 'Organizations that help with living and housing in the Netherlands',
     frontPage: true, organizationsId: [organizations[2]['_id']]},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Learn',
-    icon: 'school',
+    icon: 'school', tagline: 'Education and learning',
     frontPage: true, organizationsId: [organizations[2]['_id']]},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Rights and Law',
     icon: 'https://image.flaticon.com/icons/svg/116/116347.svg',
+    tagline: 'More information about your rights and Dutch regulations',
     frontPage: false, organizationsId: [organizations[0]['_id'],organizations[1]['_id'],organizations[3]['_id']]},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Work',
-    icon: 'https://image.flaticon.com/icons/svg/204/204112.svg',
+    icon: 'https://image.flaticon.com/icons/svg/204/204112.svg', tagline: 'Starting point for all your work-related questions',
     frontPage: true},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Health',
     icon: 'https://image.flaticon.com/icons/svg/340/340175.svg',
+    tagline: 'More information about health issues',
     frontPage: true}
 ];
 
