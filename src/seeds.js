@@ -54,21 +54,21 @@ const organizations = [{
 const categories = [
   { _id: new mongooseClient.Types.ObjectId(), name: 'Housing',
     icon: 'home', tagline: 'Organizations that help with living and housing in the Netherlands',
-    frontPage: true, organizationsId: [organizations[2]['_id']]},
+    frontpage: true, organizationsId: [organizations[2]['_id']]},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Learn',
     icon: 'school', tagline: 'Education and learning',
-    frontPage: true, organizationsId: [organizations[2]['_id']]},
+    frontpage: true, organizationsId: [organizations[2]['_id']]},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Rights and Law',
     icon: 'https://image.flaticon.com/icons/svg/116/116347.svg',
     tagline: 'More information about your rights and Dutch regulations',
-    frontPage: false, organizationsId: [organizations[0]['_id'],organizations[1]['_id'],organizations[3]['_id']]},
+    frontpage: false, organizationsId: [organizations[0]['_id'],organizations[1]['_id'],organizations[3]['_id']]},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Work',
     icon: 'https://image.flaticon.com/icons/svg/204/204112.svg', tagline: 'Starting point for all your work-related questions',
-    frontPage: true},
+    frontpage: true},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Health',
     icon: 'https://image.flaticon.com/icons/svg/340/340175.svg',
     tagline: 'More information about health issues',
-    frontPage: true}
+    frontpage: true}
 ];
 
 
@@ -108,22 +108,22 @@ feathersClient.service('ruru').create(ruru)
   });
 
 feathersClient.service('organizations').create(organizations)
-  .then((result) => {
-    console.log('Organization seeded...', result.name);
+  .then(() => {
+    console.log('Organization seeded...' );
   }).catch((error) => {
     console.error('Error seeding organizations!', error.message);
   });
 
 feathersClient.service('categories').create(categories)
-  .then((result) => {
-    console.log('Category seeded...', result.name);
+  .then(() => {
+    console.log('Category seeded...');
   }).catch((error) => {
     console.error('Error seeding categories!', error.message);
   });
 
 feathersClient.service('faq').create(faq)
-  .then((result) => {
-    console.log('faq seeded', result.categories);
+  .then(() => {
+    console.log('faq seeded' );
   }).catch((error) =>{
     console.error('error seeding faq', error.message);
   });
