@@ -3,6 +3,8 @@
 
 module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
   return function splitFeatures (hook) {
+    if (!hook.data.features) return hook;
+
     hook.data.features = hook.data.features.split(';').map(feature => feature.trim()).filter(function(feature) { return /\S/.test(feature); });
     return Promise.resolve(hook);
   };
