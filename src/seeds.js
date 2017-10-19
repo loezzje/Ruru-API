@@ -59,7 +59,7 @@ const categories = [
     icon: 'school', tagline: 'Education and learning',
     frontpage: true, organizationsId: [organizations[2]['_id']]},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Rights and Law',
-    icon: 'https://image.flaticon.com/icons/svg/116/116347.svg',
+    icon: 'account_balance',
     tagline: 'More information about your rights and Dutch regulations',
     frontpage: false, organizationsId: [organizations[0]['_id'],organizations[1]['_id'],organizations[3]['_id']]},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Work',
