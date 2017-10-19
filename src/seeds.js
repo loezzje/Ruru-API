@@ -15,7 +15,7 @@ const organizations = [{
   features: ['Payment of pocket money', 'Referral of specialist services', 'Counseling and support', 'Accommodation advise'],
   website: 'www.coa.nl',
   phone: '0887157000',
-  address: 'Rijsntraat 8 2515 XP Den Haag',
+  address: 'Rijnstraat 8 2515 XP Den Haag',
   frontpage: true
 }, {
   _id: new mongooseClient.Types.ObjectId(),
@@ -53,20 +53,22 @@ const organizations = [{
 
 const categories = [
   { _id: new mongooseClient.Types.ObjectId(), name: 'Housing',
-    icon: 'home',
-    frontPage: true, organizationsId: [organizations[2]['_id']]},
+    icon: 'home', tagline: 'Organizations that help with living and housing in the Netherlands',
+    frontpage: true, organizationsId: [organizations[2]['_id']]},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Learn',
-    icon: 'school',
-    frontPage: true, organizationsId: [organizations[2]['_id']]},
+    icon: 'school', tagline: 'Education and learning',
+    frontpage: true, organizationsId: [organizations[2]['_id']]},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Rights and Law',
-    icon: 'https://image.flaticon.com/icons/svg/116/116347.svg',
-    frontPage: false, organizationsId: [organizations[0]['_id'],organizations[1]['_id'],organizations[3]['_id']]},
+    icon: 'account_balance',
+    tagline: 'More information about your rights and Dutch regulations',
+    frontpage: false, organizationsId: [organizations[0]['_id'],organizations[1]['_id'],organizations[3]['_id']]},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Work',
-    icon: 'https://image.flaticon.com/icons/svg/204/204112.svg',
-    frontPage: true},
+    icon: 'work', tagline: 'Starting point for all your work-related questions',
+    frontpage: true},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Health',
-    icon: 'https://image.flaticon.com/icons/svg/340/340175.svg',
-    frontPage: true}
+    icon: 'local_hospital',
+    tagline: 'More information about health issues',
+    frontpage: true}
 ];
 
 
@@ -74,8 +76,8 @@ const categories = [
 
 const ruru = [
   {about: 'Ruru helps refugees find their way in The Netherlands',
-    phone: '0627102756',
-    email: 'adamsc.au@gmail.com',
+    phone: '0612345678',
+    email: 'rur@ruru.ruru',
   }];
 
 const faq = [{
@@ -106,22 +108,22 @@ feathersClient.service('ruru').create(ruru)
   });
 
 feathersClient.service('organizations').create(organizations)
-  .then((result) => {
-    console.log('Organization seeded...', result.name);
+  .then(() => {
+    console.log('Organization seeded...' );
   }).catch((error) => {
     console.error('Error seeding organizations!', error.message);
   });
 
 feathersClient.service('categories').create(categories)
-  .then((result) => {
-    console.log('Category seeded...', result.name);
+  .then(() => {
+    console.log('Category seeded...');
   }).catch((error) => {
     console.error('Error seeding categories!', error.message);
   });
 
 feathersClient.service('faq').create(faq)
-  .then((result) => {
-    console.log('faq seeded', result.categories);
+  .then(() => {
+    console.log('faq seeded' );
   }).catch((error) =>{
     console.error('error seeding faq', error.message);
   });

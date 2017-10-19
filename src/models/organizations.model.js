@@ -17,7 +17,7 @@ module.exports = function (app) {
     adress: { type: String },
     facebook: { type: String },
 
-    frontPage: { type: Boolean },
+    frontpage: { type: Boolean },
 
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
