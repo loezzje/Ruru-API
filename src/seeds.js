@@ -63,10 +63,10 @@ const categories = [
     tagline: 'More information about your rights and Dutch regulations',
     frontpage: false, organizationsId: [organizations[0]['_id'],organizations[1]['_id'],organizations[3]['_id']]},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Work',
-    icon: 'https://image.flaticon.com/icons/svg/204/204112.svg', tagline: 'Starting point for all your work-related questions',
+    icon: 'work', tagline: 'Starting point for all your work-related questions',
     frontpage: true},
   { _id: new mongooseClient.Types.ObjectId(), name: 'Health',
-    icon: 'https://image.flaticon.com/icons/svg/340/340175.svg',
+    icon: 'local_hospital',
     tagline: 'More information about health issues',
     frontpage: true}
 ];
