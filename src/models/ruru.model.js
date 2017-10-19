@@ -9,7 +9,7 @@ module.exports = function (app) {
     about: { type: String },
     phone: { type: Number },
     email: { type: String },
-    adress: { type: String },
+    address: { type: String },
     instagram: { type: String },
     facebook: { type: String },
     twitter: { type: String },
