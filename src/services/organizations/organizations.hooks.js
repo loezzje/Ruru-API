@@ -10,12 +10,15 @@ const restrict = [
 const addToCategory = require('../../hooks/add-to-category');
 
 
+const splitFeatures = require('../../hooks/split-features');
+
+
 module.exports = {
   before: {
     all: [],
     find: [],
     get: [],
-    create: [addToCategory()],
+    create: [addToCategory(), splitFeatures()],
     update: [],
     patch: [],
     remove: []
