@@ -71,23 +71,24 @@ const categories = [
     frontpage: true}
 ];
 
-
-
-
 const ruru = [
   {about: 'Ruru helps refugees find their way in The Netherlands',
     phone: '0612345678',
     email: 'rur@ruru.ruru',
+    address: 'no permanent location yet',
+    instagram: 'https://www.instagram.com/ruruhandbook/',
+    facebook: 'no facebook',
+    twitter: 'no twitter',
   }];
 
 const faq = [{
-  question: 'question 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vestibulum dictum justo, non porttitor leo blandit sed. Etiam ut iaculis nibh. Phasellus ut lacus vel dolor venenatis accumsan sit amet vitae quam. Vestibulum congue nunc sem, in consectetur dui volutpat eu. In a mi feugiat, interdum leo eget, viverra nisl .',
-  answer: 'answer 1 Pellentesque purus enim, eleifend at lobortis sed, porttitor a odio. Nam faucibus iaculis sapien eu scelerisque. Cras feugiat arcu et lectus porttitor egestas. Pellentesque vel gravida metus, at faucibus velit. Duis felis neque, viverra quis mollis laoreet, mollis ac magna. Duis leo odio, congue id auctor tempus, molestie eget quam. Nunc condimentum tellus in purus posuere, et efficitur risus ornare.',
+  question: 'Are the terms ‘refugee’ and ‘migrant’ interchangeable?',
+  answer: 'No. Although it is becoming increasingly common to see the terms ‘refugee’ and ‘migrant’ used interchangeably in media and public discussions, there is a crucial legal difference between the two. Confusing them can lead to problems for refugees and asylum-seekers, as well as misunderstandings in discussions of asylum and migration.',
   categories: [categories[2]['_id']],
 },
 {
-  question: 'question 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vestibulum dictum justo, non porttitor leo blandit sed. Etiam ut iaculis nibh. Phasellus ut lacus vel dolor venenatis accumsan sit amet vitae quam. Vestibulum congue nunc sem, in consectetur dui volutpat eu. In a mi feugiat, interdum leo eget, viverra nisl. Nam gravida massa est, nec facilisis mi venenatis eget. Suspendisse sed tincidunt lacus, ut mattis augue. Vestibulum pulvinar nibh sit amet massa tempus, ut consequat lorem volutpat. Curabitur eget convallis orci, eu cursus leo. .',
-  answer: 'answer 2. Pellentesque purus enim, eleifend at lobortis sed, porttitor a odio. Nam faucibus iaculis sapien eu scelerisque. Cras feugiat arcu et lectus porttitor egestas. Pellentesque vel gravida metus, at faucibus velit. Duis felis neque, viverra quis mollis laoreet, mollis ac magna. Duis leo odio, congue id auctor tempus, molestie eget quam. Nunc condimentum tellus in purus posuere, et efficitur risus ornare.',
+  question: 'What is unique about refugees?',
+  answer: 'Refugees are specifically defined and protected in international law. Refugees are people outside their country of origin because of feared persecution, conflict, violence, or other circumstances that have seriously disturbed public order, and who, as a result, require ‘international protection’. Their situation is often so perilous and intolerable, that they cross national borders to seek safety in nearby countries, and thus become internationally recognized as ‘refugees’ with access to assistance from states, UNHCR, and relevant organizations. They are so recognized precisely because it is too dangerous for them to return home, and they therefore need sanctuary elsewhere. These are people for whom denial of asylum has potentially deadly consequences.',
   categories: [categories[0]['_id']],
 }
 ];
