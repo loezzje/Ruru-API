@@ -7,12 +7,15 @@ const restrict = [
 ];
 
 
+const addToCategory = require('../../hooks/add-to-category');
+
+
 module.exports = {
   before: {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [addToCategory()],
     update: [],
     patch: [],
     remove: []
