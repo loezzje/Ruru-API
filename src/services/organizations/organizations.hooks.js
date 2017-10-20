@@ -17,11 +17,11 @@ module.exports = {
   before: {
     all: [],
     find: [],
-    get: [],
-    create: [addToCategory(), splitFeatures()],
-    update: [],
-    patch: [],
-    remove: []
+    get: [...restrict],
+    create: [...restrict, addToCategory(), splitFeatures()],
+    update: [...restrict],
+    patch: [...restrict],
+    remove: [...restrict]
   },
 
   after: {
