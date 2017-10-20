@@ -16,7 +16,9 @@ const organizations = [{
   website: 'www.coa.nl',
   phone: '0887157000',
   address: 'Rijnstraat 8 2515 XP Den Haag',
-  frontpage: true
+  frontpage: true,
+  categories: []
+
 }, {
   _id: new mongooseClient.Types.ObjectId(),
   name: 'IND - Immigration and Naturalization',
@@ -26,7 +28,8 @@ const organizations = [{
   website: 'www.ind.nl',
   phone: '0880430430',
   address: 'Stadhouderskade 85 1073 AT Amsterdam',
-  frontpage: false
+  frontpage: false,
+  categories: []
 },
 {
   _id: new mongooseClient.Types.ObjectId(),
@@ -36,7 +39,8 @@ const organizations = [{
   about: 'You can find practical information about where to look for work, accommodation or studying in Amsterdam. It is meant for tourists, but also acts as the English information site of City Counsil',
   features: ['Finding work', 'Practical information about living in Amsterdam, inclusing taxes', 'Information about Universities in Amsterdam'],
   website: 'www.iamsterdam.com/en',
-  frontpage: false
+  frontpage: false,
+  categories: []
 },
 {
   _id: new mongooseClient.Types.ObjectId(),
@@ -47,7 +51,8 @@ const organizations = [{
   website: 'www.vluchtelingenwerk.nl',
   phone: '0203467200',
   address: 'Surinameplein 122 1058 GV Amsterdam',
-  frontpage: true
+  frontpage: true,
+  categories: []
 }
 ];
 
@@ -80,7 +85,7 @@ const ruru = [
     email: 'rur@ruru.ruru',
   }];
 
-const faq = [{
+const faqs = [{
   question: 'question 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vestibulum dictum justo, non porttitor leo blandit sed. Etiam ut iaculis nibh. Phasellus ut lacus vel dolor venenatis accumsan sit amet vitae quam. Vestibulum congue nunc sem, in consectetur dui volutpat eu. In a mi feugiat, interdum leo eget, viverra nisl .',
   answer: 'answer 1 Pellentesque purus enim, eleifend at lobortis sed, porttitor a odio. Nam faucibus iaculis sapien eu scelerisque. Cras feugiat arcu et lectus porttitor egestas. Pellentesque vel gravida metus, at faucibus velit. Duis felis neque, viverra quis mollis laoreet, mollis ac magna. Duis leo odio, congue id auctor tempus, molestie eget quam. Nunc condimentum tellus in purus posuere, et efficitur risus ornare.',
   categories: [categories[2]['_id']],
@@ -121,9 +126,9 @@ feathersClient.service('categories').create(categories)
     console.error('Error seeding categories!', error.message);
   });
 
-feathersClient.service('faq').create(faq)
+feathersClient.service('faqs').create(faqs)
   .then(() => {
-    console.log('faq seeded' );
+    console.log('faqs seeded' );
   }).catch((error) =>{
-    console.error('error seeding faq', error.message);
+    console.error('error seeding faqs', error.message);
   });

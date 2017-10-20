@@ -1,11 +1,11 @@
-// FAQ-model.js - A mongoose model
+// FAQS-model.js - A mongoose model
 //
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
 module.exports = function (app) {
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
-  const faq = new Schema({
+  const faqs = new Schema({
     question: { type: String, required: true },
     answer: { type: String, required: true },
     categories: [{ type: Schema.Types.ObjectId, ref: 'categories' }],
@@ -14,5 +14,5 @@ module.exports = function (app) {
     updatedAt: { type: Date, default: Date.now }
   });
 
-  return mongooseClient.model('faq', faq);
+  return mongooseClient.model('faqs', faqs);
 };
