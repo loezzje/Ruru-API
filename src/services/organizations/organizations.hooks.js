@@ -19,8 +19,8 @@ module.exports = {
     find: [],
     get: [],
     create: [addToCategory(), splitFeatures()],
-    update: [],
-    patch: [],
+    update: [addToCategory(), splitFeatures()],
+    patch: [splitFeatures()],
     remove: []
   },
 
