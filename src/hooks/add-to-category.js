@@ -16,7 +16,7 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
       // category does NOT contains that organization already
       (!category.organizationsId.map(orgId =>
         orgId.toString()).includes(organizationId().toString()));
-    };
+    }
 
     hook.app.service('categories').find()
       .then((result) => {
