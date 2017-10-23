@@ -13,15 +13,21 @@ const addToCategory = require('../../hooks/add-to-category');
 const splitFeatures = require('../../hooks/split-features');
 
 
+const removeFromCategory = require('../../hooks/remove-from-category');
+
+
+const newId = require('../../hooks/new-id');
+
+
 module.exports = {
   before: {
     all: [],
     find: [],
-    get: [...restrict],
-    create: [...restrict, addToCategory(), splitFeatures()],
-    update: [...restrict],
-    patch: [...restrict],
-    remove: [...restrict]
+    get: [],
+    create: [...restrict, newId(), splitFeatures(), addToCategory()],
+    update: [...restrict, splitFeatures(), addToCategory(), removeFromCategory()],
+    patch: [...restrict, splitFeatures(), addToCategory(), removeFromCategory()],
+    remove: [...restrict,removeFromCategory()]
   },
 
   after: {
