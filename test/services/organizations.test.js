@@ -1,5 +1,5 @@
-/*global done: true*/
 /*eslint no-undef: "error"*/
+
 const assert = require('assert');
 const app = require('../../src/app');
 

@@ -30,7 +30,7 @@ module.exports = {
   },
 
   after: {
-    all: [populate({ schema: organizationsSchema }), fixOrganizationArray()],
+    all: [fixOrganizationArray(), populate({ schema: organizationsSchema })],
     find: [],
     get: [],
     create: [],

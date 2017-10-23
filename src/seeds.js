@@ -1,3 +1,5 @@
+/*eslint no-console: "error"*/
+
 const feathers = require('feathers/client');
 const rest = require('feathers-rest/client');
 const superagent = require('superagent');
@@ -12,6 +14,26 @@ const user = {
   password: 'test'
 };
 
+const categories = [
+  { _id: new mongooseClient.Types.ObjectId(), name: 'Housing',
+    icon: 'home', tagline: 'Organizations that help with living and housing in the Netherlands',
+    frontpage: true},
+  { _id: new mongooseClient.Types.ObjectId(), name: 'Learn',
+    icon: 'school', tagline: 'Education and learning',
+    frontpage: true},
+  { _id: new mongooseClient.Types.ObjectId(), name: 'Rights and Law',
+    icon: 'account_balance',
+    tagline: 'More information about your rights and Dutch regulations',
+    frontpage: false},
+  { _id: new mongooseClient.Types.ObjectId(), name: 'Work',
+    icon: 'work', tagline: 'Starting point for all your work-related questions',
+    frontpage: true},
+  { _id: new mongooseClient.Types.ObjectId(), name: 'Health',
+    icon: 'local_hospital',
+    tagline: 'More information about health issues',
+    frontpage: true}
+];
+
 const organizations = [{
   _id: new mongooseClient.Types.ObjectId(),
   name: 'COA - Centre of Asylum',
@@ -22,7 +44,8 @@ const organizations = [{
   website: 'www.coa.nl',
   phone: '0887157000',
   address: 'Rijnstraat 8 2515 XP Den Haag',
-  frontpage: true
+  frontpage: true,
+  categoryIds: [categories[0]['_id'], categories[1]['_id']]
 }, {
   _id: new mongooseClient.Types.ObjectId(),
   name: 'IND - Immigration and Naturalization',
@@ -32,7 +55,8 @@ const organizations = [{
   website: 'www.ind.nl',
   phone: '0880430430',
   address: 'Stadhouderskade 85 1073 AT Amsterdam',
-  frontpage: false
+  frontpage: false,
+  categoryIds: [categories[1]['_id'], categories[2]['_id']]
 },
 {
   _id: new mongooseClient.Types.ObjectId(),
@@ -43,7 +67,9 @@ const organizations = [{
   features: ['Finding work', 'Practical information about living in Amsterdam, inclusing taxes', 'Information about Universities in Amsterdam'],
   website: 'www.iamsterdam.com/en',
   adress: 'weesperplein Amsterdam',
-  frontpage: false
+  frontpage: false,
+  categoryIds: [categories[3]['_id'], categories[4]['_id']]
+
 },
 {
   _id: new mongooseClient.Types.ObjectId(),
@@ -54,29 +80,12 @@ const organizations = [{
   website: 'www.vluchtelingenwerk.nl',
   phone: '0203467200',
   address: 'Surinameplein 122 1058 GV Amsterdam',
-  frontpage: true
+  frontpage: true,
+  categoryIds: [categories[0]['_id'], categories[3]['_id']]
 }
 ];
 
-const categories = [
-  { _id: new mongooseClient.Types.ObjectId(), name: 'Housing',
-    icon: 'home', tagline: 'Organizations that help with living and housing in the Netherlands',
-    frontpage: true, organizationsId: [organizations[2]['_id']]},
-  { _id: new mongooseClient.Types.ObjectId(), name: 'Learn',
-    icon: 'school', tagline: 'Education and learning',
-    frontpage: true, organizationsId: [organizations[2]['_id']]},
-  { _id: new mongooseClient.Types.ObjectId(), name: 'Rights and Law',
-    icon: 'account_balance',
-    tagline: 'More information about your rights and Dutch regulations',
-    frontpage: false, organizationsId: [organizations[0]['_id'],organizations[1]['_id'],organizations[3]['_id']]},
-  { _id: new mongooseClient.Types.ObjectId(), name: 'Work',
-    icon: 'work', tagline: 'Starting point for all your work-related questions',
-    frontpage: true},
-  { _id: new mongooseClient.Types.ObjectId(), name: 'Health',
-    icon: 'local_hospital',
-    tagline: 'More information about health issues',
-    frontpage: true}
-];
+
 
 const ruru = [
   {about: 'Ruru helps refugees find their way in The Netherlands',
@@ -91,12 +100,12 @@ const ruru = [
 const faq = [{
   question: 'Are the terms ‘refugee’ and ‘migrant’ interchangeable?',
   answer: 'No. Although it is becoming increasingly common to see the terms ‘refugee’ and ‘migrant’ used interchangeably in media and public discussions, there is a crucial legal difference between the two. Confusing them can lead to problems for refugees and asylum-seekers, as well as misunderstandings in discussions of asylum and migration.',
-  categoriesId: [categories[2]['_id']],
+  categoriesId: [categories[0]['_id']],
 },
 {
   question: 'What is unique about refugees?',
   answer: 'Refugees are specifically defined and protected in international law. Refugees are people outside their country of origin because of feared persecution, conflict, violence, or other circumstances that have seriously disturbed public order, and who, as a result, require ‘international protection’. Their situation is often so perilous and intolerable, that they cross national borders to seek safety in nearby countries, and thus become internationally recognized as ‘refugees’ with access to assistance from states, UNHCR, and relevant organizations. They are so recognized precisely because it is too dangerous for them to return home, and they therefore need sanctuary elsewhere. These are people for whom denial of asylum has potentially deadly consequences.',
-  categoriesId: [categories[0]['_id']],
+  categoriesId: [categories[1]['_id']],
 }
 ];
 
@@ -108,79 +117,59 @@ feathersClient
   .configure(rest('http://localhost:3030').superagent(superagent))
   .configure(auth());
 
+/* eslint-disable no-console */
 feathersClient.service('users').create(user)
-  .then(() => {
-    console.log('user seeded...');
+.then(() => {
+ console.log('user seeded...');
 
-    feathersClient.authenticate({
-      strategy: 'local',
-      email: user.email,
-      password: user.password
-    })
-      .then(() => {
-        feathersClient.service('ruru').create(ruru)
-          .then(() => {
-            console.log('Ruru seeded...');
-          }).catch((error) => {
-            console.error('Error seeding ruru!', error.message);
-          });
-      })
-      .catch(function(error){
-        console.error('Error authenticating!', error);
-      });
+ feathersClient.authenticate({
+   strategy: 'local',
+   email: user.email,
+   password: user.password
+ })
+   .then(() => {
 
+     feathersClient.service('categories').create(categories)
+       .then(() => {
+         console.log('Categories seeded...' );
 
-    feathersClient.authenticate({
-      strategy: 'local',
-      email: user.email,
-      password: user.password
-    })
-      .then(() => {
-        feathersClient.service('organizations').create(organizations)
-          .then(() => {
-            console.log('Organization seeded...' );
-          }).catch((error) => {
-            console.error('Error seeding organizations!', error.message);
-          });
-      })
-      .catch(function(error){
-        console.error('Error authenticating!', error);
-      });
+         feathersClient.service('organizations').create(organizations)
+           .then(() => {
+             console.log('Organization seeded...');
 
-    feathersClient.authenticate({
-      strategy: 'local',
-      email: user.email,
-      password: user.password
-    })
-      .then(() => {
-        feathersClient.service('categories').create(categories)
-          .then(() => {
-            console.log('Category seeded...');
-          }).catch((error) => {
-            console.error('Error seeding categories!', error.message);
-          });
-      })
-      .catch(function(error){
-        console.error('Error authenticating!', error);
-      });
+             feathersClient.service('faq').create(faq)
+               .then(() => {
+                 console.log('faq seeded' );
+               })
+               // FAQ FINISHED
+               .catch((error) =>{
+                 console.error('error seeding faq', error.message);
+               });
+           })
+           // ORGANIZATION FINISHED
+           .catch((error) => {
+             console.error('Error seeding organizations!', error.message);
+           });
+       })
+       // CATEGORIES FINISHED
+       .catch((error) => {
+         console.error('Error seeding categories!', error.message);
+       });
 
-
-    feathersClient.authenticate({
-      strategy: 'local',
-      email: user.email,
-      password: user.password
-    })
-      .then(() => {
-        feathersClient.service('faq').create(faq)
-          .then(() => {
-            console.log('faq seeded' );
-          }).catch((error) =>{
-            console.error('error seeding faq', error.message);
-          });
-      })
-      .catch(function(error){
-        console.error('Error authenticating!', error);
-      });
-  }).catch((error) => {
-    console.error('Error seeding user!', error.message);
+     feathersClient.service('ruru').create(ruru)
+       .then(() => {
+         console.log('Ruru seeded...');
+       })
+       .catch((error) => {
+         console.error('Error seeding ruru!', error.message);
+       });
+   })
+   // AUTHENTICATION FINISHED
+   .catch(function(error){
+     console.error('Error authenticating!', error);
+   });
+})
+// USER FINISHED
+.catch(function(error) {
+ console.error('Error creating user!', error);
   });
