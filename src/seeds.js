@@ -109,7 +109,6 @@ const faq = [{
 }
 ];
 
-
 const feathersClient = feathers();
 
 feathersClient
@@ -117,59 +116,53 @@ feathersClient
   .configure(rest('http://localhost:3030').superagent(superagent))
   .configure(auth());
 
-/* eslint-disable no-console */
-feathersClient.service('users').create(user)
-.then(() => {
- console.log('user seeded...');
+  /* eslint-disable no-console */
+/* eslint-disable indent */
+ feathersClient.service('users').create(user)
+ .then(() => {
+  console.log('user seeded...');
 
- feathersClient.authenticate({
-   strategy: 'local',
-   email: user.email,
-   password: user.password
+  feathersClient.authenticate({
+    strategy: 'local',
+    email: user.email,
+    password: user.password
+  })
+    .then(() => {
+
+      feathersClient.service('categories').create(categories)
+        .then(() => {
+          console.log('Categories seeded...' );
+            feathersClient.service('faq').create(faq)
+              .then(() => {
+                console.log('faq seeded' );
+                organizations.map(org => feathersClient.service('organizations').create(org));
+              })
+              // FAQ FINISHED
+              .catch((error) =>{
+                console.error('error seeding faq', error.message);
+              });
+
+        })
+        // CATEGORIES FINISHED
+        .catch((error) => {
+          console.error('Error seeding categories!', error.message);
+        });
+
+      feathersClient.service('ruru').create(ruru)
+        .then(() => {
+          console.log('Ruru seeded...');
+
+        })
+        .catch((error) => {
+          console.error('Error seeding ruru!', error.message);
+        });
+    })
+    // AUTHENTICATION FINISHED
+    .catch(function(error){
+      console.error('Error authenticating!', error);
+    });
  })
-   .then(() => {
-
-     feathersClient.service('categories').create(categories)
-       .then(() => {
-         console.log('Categories seeded...' );
-
-         feathersClient.service('organizations').create(organizations)
-           .then(() => {
-             console.log('Organization seeded...');
-
-             feathersClient.service('faq').create(faq)
-               .then(() => {
-                 console.log('faq seeded' );
-               })
-               // FAQ FINISHED
-               .catch((error) =>{
-                 console.error('error seeding faq', error.message);
-               });
-           })
-           // ORGANIZATION FINISHED
-           .catch((error) => {
-             console.error('Error seeding organizations!', error.message);
-           });
-       })
-       // CATEGORIES FINISHED
-       .catch((error) => {
-         console.error('Error seeding categories!', error.message);
-       });
-
-     feathersClient.service('ruru').create(ruru)
-       .then(() => {
-         console.log('Ruru seeded...');
-       })
-       .catch((error) => {
-         console.error('Error seeding ruru!', error.message);
-       });
-   })
-   // AUTHENTICATION FINISHED
-   .catch(function(error){
-     console.error('Error authenticating!', error);
+ // USER FINISHED
+ .catch(function(error) {
+  console.error('Error creating user!', error);
    });
-})
-// USER FINISHED
-.catch(function(error) {
- console.error('Error creating user!', error);
-  });
