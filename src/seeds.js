@@ -6,6 +6,11 @@ const hooks = require('feathers-hooks');
 const app = require('./app');
 const mongooseClient = app.get('mongooseClient');
 
+const user = {
+  email: 'test@test.nl',
+  password: 'test'
+};
+
 const organizations = [{
   _id: new mongooseClient.Types.ObjectId(),
   name: 'COA - Centre of Asylum',
@@ -36,6 +41,7 @@ const organizations = [{
   about: 'You can find practical information about where to look for work, accommodation or studying in Amsterdam. It is meant for tourists, but also acts as the English information site of City Counsil',
   features: ['Finding work', 'Practical information about living in Amsterdam, inclusing taxes', 'Information about Universities in Amsterdam'],
   website: 'www.iamsterdam.com/en',
+  adress: 'weesperplein Amsterdam',
   frontpage: false
 },
 {
@@ -106,6 +112,13 @@ feathersClient.service('ruru').create(ruru)
     console.log('Ruru seeded...');
   }).catch((error) => {
     console.error('Error seeding ruru!', error.message);
+  });
+
+feathersClient.service('users').create(user)
+  .then(() => {
+    console.log('user seeded...');
+  }).catch((error) => {
+    console.error('Error seeding user!', error.message);
   });
 
 feathersClient.service('organizations').create(organizations)
