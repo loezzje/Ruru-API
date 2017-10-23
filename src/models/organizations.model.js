@@ -11,6 +11,7 @@ module.exports = function (app) {
     tagline: { type: String },
     about: { type: String },
     features: [ String ],
+    categoryIds: [{ type: Schema.Types.ObjectId, ref: 'categories' }],
 
     website: { type: String },
     phone: { type: Number },

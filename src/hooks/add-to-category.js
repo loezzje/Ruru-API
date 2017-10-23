@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
   return function addToCategory (hook) {
-    if (!hook.data.categories) return hook;
+    if (!hook.data.categoryIds) return hook;
 
     var organizationId = () => {
       return (hook.id === undefined) ?
@@ -12,7 +12,7 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
 
     function shouldCategoryBeUpdated(category) {
       // category is in the organization list
-      return hook.data.categories.includes(category._id.toString()) &&
+      return hook.data.categoryIds.includes(category._id.toString()) &&
       // category does NOT contains that organization already
       (!category.organizationsId.map(orgId =>
         orgId.toString()).includes(organizationId().toString()));

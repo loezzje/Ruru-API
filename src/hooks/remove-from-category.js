@@ -3,11 +3,11 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
     // this hook requires hook.data.categories to be present & an Array to run.
     // If categories is not defined an empty array will be assigned &
     // the object will be deleted from all categories
-    if (!hook.data.categories) {hook.data.categories = [];}
+    if (!hook.data.categoryIds) {hook.data.categoryIds = [];}
 
     function shouldDeleteFromCategory(category) {
       // category is NOT in the organization's list
-      return (!hook.data.categories.includes(category._id.toString()))
+      return (!hook.data.categoryIds.includes(category._id.toString()))
       // category contains that organization
       && category.organizationsId.map(orgId =>
         orgId.toString()).includes(hook.id);
