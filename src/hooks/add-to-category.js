@@ -1,10 +1,7 @@
 var mongoose = require('mongoose');
-const app = require('../app');
 
 module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
   return function addToCategory (hook) {
-    const { user } = hook.params;
-
     if (!hook.data.categories) return hook;
 
     var organizationId = () => {
