@@ -14,6 +14,26 @@ const user = {
   password: 'test'
 };
 
+const categories = [
+  { _id: new mongooseClient.Types.ObjectId(), name: 'Housing',
+    icon: 'home', tagline: 'Organizations that help with living and housing in the Netherlands',
+    frontpage: true},
+  { _id: new mongooseClient.Types.ObjectId(), name: 'Learn',
+    icon: 'school', tagline: 'Education and learning',
+    frontpage: true},
+  { _id: new mongooseClient.Types.ObjectId(), name: 'Rights and Law',
+    icon: 'account_balance',
+    tagline: 'More information about your rights and Dutch regulations',
+    frontpage: false},
+  { _id: new mongooseClient.Types.ObjectId(), name: 'Work',
+    icon: 'work', tagline: 'Starting point for all your work-related questions',
+    frontpage: true},
+  { _id: new mongooseClient.Types.ObjectId(), name: 'Health',
+    icon: 'local_hospital',
+    tagline: 'More information about health issues',
+    frontpage: true}
+];
+
 const organizations = [{
   _id: new mongooseClient.Types.ObjectId(),
   name: 'COA - Centre of Asylum',
@@ -24,7 +44,8 @@ const organizations = [{
   website: 'www.coa.nl',
   phone: '0887157000',
   address: 'Rijnstraat 8 2515 XP Den Haag',
-  frontpage: true
+  frontpage: true,
+  categoryIds: [categories[0]['_id'], categories[1]['_id']]
 }, {
   _id: new mongooseClient.Types.ObjectId(),
   name: 'IND - Immigration and Naturalization',
@@ -34,7 +55,8 @@ const organizations = [{
   website: 'www.ind.nl',
   phone: '0880430430',
   address: 'Stadhouderskade 85 1073 AT Amsterdam',
-  frontpage: false
+  frontpage: false,
+  categoryIds: [categories[1]['_id'], categories[2]['_id']]
 },
 {
   _id: new mongooseClient.Types.ObjectId(),
@@ -45,7 +67,9 @@ const organizations = [{
   features: ['Finding work', 'Practical information about living in Amsterdam, inclusing taxes', 'Information about Universities in Amsterdam'],
   website: 'www.iamsterdam.com/en',
   adress: 'weesperplein Amsterdam',
-  frontpage: false
+  frontpage: false,
+  categoryIds: [categories[3]['_id'], categories[4]['_id']]
+
 },
 {
   _id: new mongooseClient.Types.ObjectId(),
@@ -56,29 +80,12 @@ const organizations = [{
   website: 'www.vluchtelingenwerk.nl',
   phone: '0203467200',
   address: 'Surinameplein 122 1058 GV Amsterdam',
-  frontpage: true
+  frontpage: true,
+  categoryIds: [categories[0]['_id'], categories[3]['_id']]
 }
 ];
 
-const categories = [
-  { _id: new mongooseClient.Types.ObjectId(), name: 'Housing',
-    icon: 'home', tagline: 'Organizations that help with living and housing in the Netherlands',
-    frontpage: true, organizationsId: [organizations[2]['_id']]},
-  { _id: new mongooseClient.Types.ObjectId(), name: 'Learn',
-    icon: 'school', tagline: 'Education and learning',
-    frontpage: true, organizationsId: [organizations[2]['_id']]},
-  { _id: new mongooseClient.Types.ObjectId(), name: 'Rights and Law',
-    icon: 'account_balance',
-    tagline: 'More information about your rights and Dutch regulations',
-    frontpage: false, organizationsId: [organizations[0]['_id'],organizations[1]['_id'],organizations[3]['_id']]},
-  { _id: new mongooseClient.Types.ObjectId(), name: 'Work',
-    icon: 'work', tagline: 'Starting point for all your work-related questions',
-    frontpage: true},
-  { _id: new mongooseClient.Types.ObjectId(), name: 'Health',
-    icon: 'local_hospital',
-    tagline: 'More information about health issues',
-    frontpage: true}
-];
+
 
 const ruru = [
   {about: 'Ruru helps refugees find their way in The Netherlands',
@@ -102,7 +109,6 @@ const faq = [{
 }
 ];
 
-
 const feathersClient = feathers();
 
 feathersClient
@@ -110,59 +116,53 @@ feathersClient
   .configure(rest('http://localhost:3030').superagent(superagent))
   .configure(auth());
 
-/* eslint-disable no-console */
-feathersClient.service('users').create(user)
-  .then(() => {
-    console.log('user seeded...');
+  /* eslint-disable no-console */
+/* eslint-disable indent */
+ feathersClient.service('users').create(user)
+ .then(() => {
+  console.log('user seeded...');
 
-    feathersClient.authenticate({
-      strategy: 'local',
-      email: user.email,
-      password: user.password
-    })
-      .then(() => {
-
-        feathersClient.service('organizations').create(organizations)
-          .then(() => {
-            console.log('Organization seeded...' );
-
-            feathersClient.service('categories').create(categories)
-              .then(() => {
-                console.log('Category seeded...');
-
-                feathersClient.service('faq').create(faq)
-                  .then(() => {
-                    console.log('faq seeded' );
-                  })
-                  // FAQ FINISHED
-                  .catch((error) =>{
-                    console.error('error seeding faq', error.message);
-                  });
-              })
-              // CATEGORIES FINISHED
-              .catch((error) => {
-                console.error('Error seeding categories!', error.message);
-              });
-          })
-          // ORGANIZATION FINISHED
-          .catch((error) => {
-            console.error('Error seeding organizations!', error.message);
-          });
-
-        feathersClient.service('ruru').create(ruru)
-          .then(() => {
-            console.log('Ruru seeded...');
-          })
-          .catch((error) => {
-            console.error('Error seeding ruru!', error.message);
-          });
-      })
-      // AUTHENTICATION FINISHED
-      .catch(function(error){
-        console.error('Error authenticating!', error);
-      });
+  feathersClient.authenticate({
+    strategy: 'local',
+    email: user.email,
+    password: user.password
   })
-  // USER FINISHED
-  .catch(function(error) {
-    console.error('Error creating user!', error);
-  });
+    .then(() => {
+
+      feathersClient.service('categories').create(categories)
+        .then(() => {
+          console.log('Categories seeded...' );
+            feathersClient.service('faq').create(faq)
+              .then(() => {
+                console.log('faq seeded' );
+                organizations.map(org => feathersClient.service('organizations').create(org));
+              })
+              // FAQ FINISHED
+              .catch((error) =>{
+                console.error('error seeding faq', error.message);
+              });
+
+        })
+        // CATEGORIES FINISHED
+        .catch((error) => {
+          console.error('Error seeding categories!', error.message);
+        });
+
+      feathersClient.service('ruru').create(ruru)
+        .then(() => {
+          console.log('Ruru seeded...');
+
+        })
+        .catch((error) => {
+          console.error('Error seeding ruru!', error.message);
+        });
+    })
+    // AUTHENTICATION FINISHED
+    .catch(function(error){
+      console.error('Error authenticating!', error);
+    });
+ })
+ // USER FINISHED
+ .catch(function(error) {
+  console.error('Error creating user!', error);
+   });
