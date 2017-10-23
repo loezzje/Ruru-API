@@ -90,12 +90,12 @@ const ruru = [
 const faq = [{
   question: 'Are the terms ‘refugee’ and ‘migrant’ interchangeable?',
   answer: 'No. Although it is becoming increasingly common to see the terms ‘refugee’ and ‘migrant’ used interchangeably in media and public discussions, there is a crucial legal difference between the two. Confusing them can lead to problems for refugees and asylum-seekers, as well as misunderstandings in discussions of asylum and migration.',
-  categories: [categories[2]['_id']],
+  categoriesId: [categories[2]['_id']],
 },
 {
   question: 'What is unique about refugees?',
   answer: 'Refugees are specifically defined and protected in international law. Refugees are people outside their country of origin because of feared persecution, conflict, violence, or other circumstances that have seriously disturbed public order, and who, as a result, require ‘international protection’. Their situation is often so perilous and intolerable, that they cross national borders to seek safety in nearby countries, and thus become internationally recognized as ‘refugees’ with access to assistance from states, UNHCR, and relevant organizations. They are so recognized precisely because it is too dangerous for them to return home, and they therefore need sanctuary elsewhere. These are people for whom denial of asylum has potentially deadly consequences.',
-  categories: [categories[0]['_id']],
+  categoriesId: [categories[0]['_id']],
 }
 ];
 
