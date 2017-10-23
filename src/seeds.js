@@ -2,6 +2,7 @@ const feathers = require('feathers/client');
 const rest = require('feathers-rest/client');
 const superagent = require('superagent');
 const hooks = require('feathers-hooks');
+const auth = require('feathers-authentication-client');
 
 const app = require('./app');
 const mongooseClient = app.get('mongooseClient');
@@ -104,15 +105,8 @@ const feathersClient = feathers();
 
 feathersClient
   .configure(hooks())
-  .configure(rest('http://localhost:3030').superagent(superagent));
-
-
-feathersClient.service('ruru').create(ruru)
-  .then(() => {
-    console.log('Ruru seeded...');
-  }).catch((error) => {
-    console.error('Error seeding ruru!', error.message);
-  });
+  .configure(rest('http://localhost:3030').superagent(superagent))
+  .configure(auth());
 
 feathersClient.service('users').create(user)
   .then(() => {
@@ -121,23 +115,72 @@ feathersClient.service('users').create(user)
     console.error('Error seeding user!', error.message);
   });
 
-feathersClient.service('organizations').create(organizations)
+feathersClient.authenticate({
+  strategy: 'local',
+  email: user.email,
+  password: user.password
+})
   .then(() => {
-    console.log('Organization seeded...' );
-  }).catch((error) => {
-    console.error('Error seeding organizations!', error.message);
+    feathersClient.service('ruru').create(ruru)
+      .then(() => {
+        console.log('Ruru seeded...');
+      }).catch((error) => {
+        console.error('Error seeding ruru!', error.message);
+      });
+  })
+  .catch(function(error){
+    console.error('Error authenticating!', error);
   });
 
-feathersClient.service('categories').create(categories)
+
+feathersClient.authenticate({
+  strategy: 'local',
+  email: user.email,
+  password: user.password
+})
   .then(() => {
-    console.log('Category seeded...');
-  }).catch((error) => {
-    console.error('Error seeding categories!', error.message);
+    feathersClient.service('organizations').create(organizations)
+      .then(() => {
+        console.log('Organization seeded...' );
+      }).catch((error) => {
+        console.error('Error seeding organizations!', error.message);
+      });
+  })
+  .catch(function(error){
+    console.error('Error authenticating!', error);
   });
 
-feathersClient.service('faq').create(faq)
+feathersClient.authenticate({
+  strategy: 'local',
+  email: user.email,
+  password: user.password
+})
   .then(() => {
-    console.log('faq seeded' );
-  }).catch((error) =>{
-    console.error('error seeding faq', error.message);
+    feathersClient.service('categories').create(categories)
+      .then(() => {
+        console.log('Category seeded...');
+      }).catch((error) => {
+        console.error('Error seeding categories!', error.message);
+      });
+  })
+  .catch(function(error){
+    console.error('Error authenticating!', error);
+  });
+
+
+feathersClient.authenticate({
+  strategy: 'local',
+  email: user.email,
+  password: user.password
+})
+  .then(() => {
+    feathersClient.service('faq').create(faq)
+      .then(() => {
+        console.log('faq seeded' );
+      }).catch((error) =>{
+        console.error('error seeding faq', error.message);
+      });
+  })
+  .catch(function(error){
+    console.error('Error authenticating!', error);
   });
