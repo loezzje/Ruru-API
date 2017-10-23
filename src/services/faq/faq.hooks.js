@@ -1,11 +1,20 @@
 const { authenticate } = require('feathers-authentication').hooks;
 const { restrictToAuthenticated } = require('feathers-authentication-hooks');
+const { populate } = require('feathers-hooks-common');
 
 const restrict = [
   authenticate('jwt'),
   restrictToAuthenticated(),
 ];
 
+const categoriesSchema = {
+  include: {
+    service: 'categories',
+    nameAs: 'categories',
+    parentField: 'categoriesId',
+    childField: '_id'
+  }
+};
 
 module.exports = {
   before: {
@@ -19,7 +28,7 @@ module.exports = {
   },
 
   after: {
-    all: [],
+    all: [populate({ schema: categoriesSchema })],
     find: [],
     get: [],
     create: [],
