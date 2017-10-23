@@ -24,10 +24,10 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [newId(), splitFeatures(), addToCategory()],
-    update: [splitFeatures(), addToCategory(), removeFromCategory()],
-    patch: [splitFeatures(), addToCategory(), removeFromCategory()],
-    remove: [removeFromCategory()]
+    create: [...restrict, newId(), splitFeatures(), addToCategory()],
+    update: [...restrict, splitFeatures(), addToCategory(), removeFromCategory()],
+    patch: [...restrict, splitFeatures(), addToCategory(), removeFromCategory()],
+    remove: [...restrict,removeFromCategory()]
   },
 
   after: {

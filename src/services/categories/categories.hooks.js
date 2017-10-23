@@ -23,10 +23,10 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
-    update: [],
-    patch: [],
-    remove: []
+    create: [...restrict],
+    update: [...restrict],
+    patch: [...restrict],
+    remove: [...restrict]
   },
 
   after: {
