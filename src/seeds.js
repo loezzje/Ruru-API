@@ -59,7 +59,6 @@ const organizations = [
     address: 'Rijnstraat 8 2515 XP Den Haag',
     frontpage: true,
     categoryIds: [categories[0]['_id'], categories[1]['_id']] },
-
   { _id: new mongooseClient.Types.ObjectId(), // 1
     name: 'IND - Immigration and Naturalization',
     logo: 'https://ind.nl/_catalogs/masterpage/ind/img/logo.png',
@@ -70,7 +69,6 @@ const organizations = [
     address: 'Stadhouderskade 85 1073 AT Amsterdam',
     frontpage: false,
     categoryIds: [categories[1]['_id'], categories[2]['_id']] },
-
   { _id: new mongooseClient.Types.ObjectId(), // 2
     name: 'I Amsterdam',
     logo: 'http://allemediavacatures.nl/wp-content/uploads/2017/02/I-amsterdam-logo.png',
@@ -81,7 +79,6 @@ const organizations = [
     adress: 'weesperplein Amsterdam',
     frontpage: false,
     categoryIds: [categories[3]['_id'], categories[4]['_id']] },
-
   { _id: new mongooseClient.Types.ObjectId(), // 3
     name: 'Vluchtelingenwerk',
     logo: 'https://www.vluchtelingenwerk.nl/sites/public/u895/Logo_VluchtelingenWerk.jpg',
@@ -92,7 +89,6 @@ const organizations = [
     address: 'Surinameplein 122 1058 GV Amsterdam',
     frontpage: true,
     categoryIds: [categories[0]['_id'], categories[3]['_id']] },
-
   { _id: new mongooseClient.Types.ObjectId(), // 4
     name: 'Refugees Welcome',
     logo: 'http://www.refugees-welcome.net/wp-content/uploads/sites/3/2015/11/logo-icon.png', //Tristan
@@ -108,7 +104,6 @@ const organizations = [
     address: 'Postfach 65 03 05 13303 Berlin',
     frontpage: false,
     categoryIds: [categories[0]['_id']] },
-
   { _id: new mongooseClient.Types.ObjectId(), // 5
     name: 'Takecarebnb',
     logo: 'http://www.takecarebnb.com/wp-content/uploads/2016/02/tcbnb_logoflavicon.jpg', //Tristan
@@ -125,7 +120,7 @@ const organizations = [
 ];
 
 const ruru = [
-  { about: 'Ruru helps refugees find their way in The Netherlands',
+  { about: 'RURU is a community-driven, online information platform for newcomers to the Netherlands. Centralising the many services, organisations, groups and abundance of information into ONE reliable, up to date, easy to use platform.\nRURU works with newcomers to provide essential information and tips on their new home, including LIFE, HEALTH, EDUCATION, RIGHTS & LAWS, JOBS, HOUSING and EVENTS.\nCurrently there is a lot available to newcomers, however finding what is out there is difficult and time consuming. RURU makes sense of it all and allows newcomers to access what already exists fast and easy.',
     phone: '0612345678',
     email: 'rur@ruru.ruru',
     address: 'no permanent location yet',
