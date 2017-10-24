@@ -15,7 +15,7 @@ module.exports = function (app) {
 
     website: { type: String },
     phone: { type: Number },
-    adress: { type: String },
+    address: { type: String },
     facebook: { type: String },
 
     frontpage: { type: Boolean },
