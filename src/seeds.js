@@ -66,7 +66,7 @@ const organizations = [{
   about: 'You can find practical information about where to look for work, accommodation or studying in Amsterdam. It is meant for tourists, but also acts as the English information site of City Counsil',
   features: ['Finding work', 'Practical information about living in Amsterdam, inclusing taxes', 'Information about Universities in Amsterdam'],
   website: 'www.iamsterdam.com/en',
-  adress: 'weesperplein Amsterdam',
+  address: 'weesperplein Amsterdam',
   frontpage: false,
   categoryIds: [categories[3]['_id'], categories[4]['_id']]
 
