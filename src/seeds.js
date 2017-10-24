@@ -9,6 +9,8 @@ const auth = require('feathers-authentication-client');
 const app = require('./app');
 const mongooseClient = app.get('mongooseClient');
 
+const appUrl = (process.env.NODE_ENV === 'production') ? 'https://ruru-server.herokuapp.com' : 'http://localhost:3030'
+
 const user = {
   email: 'test@test.nl',
   password: 'test'
@@ -113,7 +115,7 @@ const feathersClient = feathers();
 
 feathersClient
   .configure(hooks())
-  .configure(rest('http://localhost:3030').superagent(superagent))
+  .configure(rest(appUrl).superagent(superagent))
   .configure(auth());
 
   /* eslint-disable no-console */
