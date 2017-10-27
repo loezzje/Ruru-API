@@ -12,15 +12,15 @@ Getting up and running is as easy as 1, 2, 3.
 
 1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
 2. Install your dependencies
+3. Make sure MongoDB is installed and running.
 
     ```
-    cd path/to/ruru-api; npm install
+    cd path/to/ruru-api; yarn install
     ```
-
-3. Start your app
+4. Start your app
 
     ```
-    npm start
+    yarn start
     ```
 
 ## Testing
